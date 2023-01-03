@@ -21,8 +21,10 @@ def get_paper_calendar():
     driver.get("https://www.ger-umweltschutz.de/abfuhrplaene.html")
     time.sleep(2)
     # assert "Python" in driver.title
-    select = Select(driver.find_element(By.CLASS_NAME, "form-control"))
-    select.select_by_index(1)
+    # next two lines are not needed in 2023 right now (04.01.2023)
+    # might be usefule when the 2024 dates are here
+    #select = Select(driver.find_element(By.CLASS_NAME, "form-control")) 
+    #select.select_by_index(1)
     #time.sleep(0.5)
     input_ = driver.find_element(By.ID, "ort")
     input_.send_keys("Wahrsow")
