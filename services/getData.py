@@ -17,6 +17,7 @@ def get_ics_data(dev=False):
         try:
             r = requests.get("https://www.geoport-nwm.de/nwm-download/Abfuhrtermine/ICS/2023/Ortsteil_Wahrsow.ics")
             if r.status_code == 200:
+                r.encoding = 'UTF-8'
                 save_file_for_fallback_use(r.text, filename="calender.ics")
                 return r.text
             elif r.status_code == 404:
