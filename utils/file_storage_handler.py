@@ -1,5 +1,5 @@
 def get_fallback_data(filename):
-    stream = open(filename,'rb', encoding='utf-8')
+    stream = open(filename, encoding='utf-8')
     ics = stream.read()
     stream.close()
     return ics
