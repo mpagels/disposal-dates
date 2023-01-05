@@ -2,15 +2,14 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from twilio.rest import Client
+import logging
+import requests
 
-SID=os.getenv('SID')
-AUTH=os.getenv('AUTH')
-FROM=os.getenv('FROM')
-TO=os.getenv('TO')
+TELEGRAM_KEY = os.getenv("TELEGRAM_KEY")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 def send_message_via_WhatsApp(message):
-    client = Client(SID, AUTH)
-    client.messages.create(body=message,
-                       from_=FROM,
-                       to=TO)
+    logging.info("trying send message")
+    url = f"https://api.telegram.org/bot{TELEGRAM_KEY}/sendMessage?chat_id={TELEGRAM_CHAT_ID}&text={message}"
+    requests.get(url).json()
+    logging.info("send message")
