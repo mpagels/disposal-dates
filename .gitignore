@@ -3,3 +3,4 @@ venv
 __pycache__
 testTime.py
 2.py
+*.log

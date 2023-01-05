@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 import time
 
+import logging
+
 from utils.file_storage_handler import save_file_for_fallback_use, get_fallback_data
 
 from bs4 import BeautifulSoup
@@ -18,7 +20,9 @@ options.add_argument('--headless')
 # dev-end
 
 def get_paper_calendar():
+    
     try:
+        logging.info("start scraping paper dates") 
         driver = webdriver.Chrome(options=options)
         driver.get("https://www.ger-umweltschutz.de/abfuhrplaene.html")
         time.sleep(2)
@@ -60,8 +64,10 @@ def get_paper_calendar():
             cal.add_component(event)
 
         save_file_for_fallback_use(cal.to_ical().decode("utf-8").replace('\r\n', '\n').strip(), "paper_calender.ics")
+        logging.info("done scrapping") 
         return cal
     except:
+        logging.info("error scrapping") 
         cal = get_fallback_data("paper_calender.ics") 
         return Calendar.from_ical(cal)
         
