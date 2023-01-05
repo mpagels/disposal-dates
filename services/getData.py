@@ -1,6 +1,7 @@
 import requests 
 from utils.file_storage_handler import get_fallback_data, save_file_for_fallback_use
 
+import logging
 
 def get_ics_data(dev=False):
     if dev:
@@ -9,8 +10,10 @@ def get_ics_data(dev=False):
         try:
             r = requests.get("https://www.geoport-nwm.de/nwm-download/Abfuhrtermine/ICS/2023/Ortsteil_Wahrsow.ics")
             if r.status_code == 200:
+                logging.info("ics download complete")        
                 r.encoding = 'UTF-8'
-                save_file_for_fallback_use(r.text, filename="calender.ics")          
+                save_file_for_fallback_use(r.text, filename="calender.ics")
+                logging.info("return ics as text")   
                 return r.text
             elif r.status_code == 404:
                 return get_fallback_data("calender.ics")

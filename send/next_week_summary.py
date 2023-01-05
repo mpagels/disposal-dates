@@ -9,9 +9,12 @@ from services.sendMessage import send_message_via_WhatsApp
 from services.extract_info_from_calendar import get_disposal_dates_from
 from services.get_paper_data_as_cal import get_paper_calendar
 
+import logging
+
 locale.setlocale(locale.LC_TIME, "de_DE")
 
 def send_next_week_summary():
+    logging.info("-----------Start-----------")
     startDate, endDate = get_7_day_range_from_today("08.01.2023")
    
     isc_data = get_ics_data()
@@ -36,4 +39,6 @@ def send_next_week_summary():
             send_message_via_WhatsApp(string_to_send.strip())
     except Exception as e:
         error_message = "Irgendwas ging falsch: " + str(e)
+        logging.error(error_message) 
         send_message_via_WhatsApp(error_message)
+    logging.info("-----------Done-----------")
