@@ -11,7 +11,7 @@ from services.get_paper_data_as_cal import get_paper_calendar
 
 import logging
 
-locale.setlocale(locale.LC_TIME, "de_DE")
+locale.setlocale(locale.LC_TIME, "de_DE.utf8")
 
 def send_next_week_summary():
     logging.info("-----------Start-----------")
