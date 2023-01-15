@@ -15,7 +15,7 @@ locale.setlocale(locale.LC_TIME, "de_DE.utf8")
 
 def send_next_week_summary():
     logging.info("-----------Start-----------")
-    startDate, endDate = get_7_day_range_from_today("08.01.2023")
+    startDate, endDate = get_7_day_range_from_today()
    
     isc_data = get_ics_data()
 
