@@ -66,7 +66,7 @@ def get_paper_calendar():
         save_file_for_fallback_use(cal.to_ical().decode("utf-8").replace('\r\n', '\n').strip(), "paper_calender.ics")
         logging.info("done scrapping") 
         return cal
-    except:
+    except Exception as e:
         logging.info("error scrapping") 
         cal = get_fallback_data("paper_calender.ics") 
         return Calendar.from_ical(cal)
